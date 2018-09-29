@@ -11,17 +11,11 @@ class MoviesController < ApplicationController
   end
 
   def index
-    sort_option = params[:sort]
-    ##Three Cases for Different Options
-    if sort_option == 'title'
-      @movies = Movie.order(:title)
-      @title_head = 'hilite'
-    elsif sort_option == 'rating'
-      @movies = Movie.order(:release_date)
-      @release_head = 'hilite'
-    else
-      @movies = Movie.all
-    end
+    @all_ratings = Movie.all_ratings
+    @selected_ratings = params[:ratings]
+    @movies = Movie.where(:rating => @selected_ratings.keys)
+    
+    
   end
 
   def new
