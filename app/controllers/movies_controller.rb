@@ -59,6 +59,8 @@ class MoviesController < ApplicationController
     elsif @sort_choice == 'rating' and @selected_ratings != nil
       @movies = Movie.where(:rating => @selected_ratings.keys).order(:release_date)
       @release_head = 'hilite'
+    else
+      @movies = Movie.all
     end
     
     
